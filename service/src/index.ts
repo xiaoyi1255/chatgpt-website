@@ -6,7 +6,7 @@ import { chatConfig, chatReplyProcess, currentModel } from './chatgpt'
 import { auth } from './middleware/auth'
 import { limiter } from './middleware/limiter'
 import { isNotEmptyString } from './utils/is'
-
+import wechatRouter  from './wechat/index'
 const app = express()
 const router = express.Router()
 
@@ -89,6 +89,8 @@ router.post('/verify', async (req, res) => {
 
 app.use('', router)
 app.use('/api', router)
+app.use('', wechatRouter);
+app.use('/api', wechatRouter);
 app.set('trust proxy', 1)
 
 app.listen(3002, () => globalThis.console.log('Server is running on port 3002'))

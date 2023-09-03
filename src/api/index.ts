@@ -64,3 +64,10 @@ export function fetchVerify<T>(token: string) {
     data: { token },
   })
 }
+
+export function fetchVerifyCode<T>(code: string) {
+  return post<T>({
+    url: '/verifyCode',
+    data: { code },
+  })
+}

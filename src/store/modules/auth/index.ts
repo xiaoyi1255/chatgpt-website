@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getToken, removeToken, setToken } from './helper'
+import { getToken, removeToken, setToken, getWechatToken, setWechatToken, removetWechatToken } from './helper'
 import { store } from '@/store/helper'
 import { fetchSession } from '@/api'
 
@@ -10,6 +10,7 @@ interface SessionResponse {
 
 export interface AuthState {
   token: string | undefined
+  wcToken: string | undefined
   session: SessionResponse | null
 }
 
@@ -17,6 +18,7 @@ export const useAuthStore = defineStore('auth-store', {
   state: (): AuthState => ({
     token: getToken(),
     session: null,
+    wcToken: getWechatToken()
   }),
 
   getters: {
@@ -37,6 +39,11 @@ export const useAuthStore = defineStore('auth-store', {
       }
     },
 
+    setWechatToken(token: string) {
+      this.wcToken = token
+      setWechatToken(token)
+    },
+
     setToken(token: string) {
       this.token = token
       setToken(token)
@@ -45,6 +52,11 @@ export const useAuthStore = defineStore('auth-store', {
     removeToken() {
       this.token = undefined
       removeToken()
+    },
+
+    removeWechatToken() {
+      this.wcToken = undefined
+      removetWechatToken()
     },
   },
 })

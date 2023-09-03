@@ -7,9 +7,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    const token = useAuthStore().token
+    const { token, wcToken } = useAuthStore()
     if (token)
       config.headers.Authorization = `Bearer ${token}`
+    if (wcToken) config.headers.token = `Bearer ${wcToken}`
     return config
   },
   (error) => {
@@ -19,9 +20,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
-    if (response.status === 200)
-      return response
-
+    if (response.status === 200) return response
     throw new Error(response.status.toString())
   },
   (error) => {

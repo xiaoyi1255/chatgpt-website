@@ -7,12 +7,14 @@ import Footer from './Footer.vue'
 import { useAppStore, useChatStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { PromptStore } from '@/components/common'
+import { VerfyModal } from '@/components/common'
 
 const appStore = useAppStore()
 const chatStore = useChatStore()
 
 const { isMobile } = useBasicLayout()
 const show = ref(false)
+const showMoal = ref(false)
 
 const collapsed = computed(() => appStore.siderCollapsed)
 
@@ -80,6 +82,11 @@ watch(
           <List />
         </div>
         <div class="p-4">
+          <NButton block @click="showMoal = true">
+            获取验证码
+          </NButton>
+        </div>
+        <div class="p-4">
           <NButton block @click="show = true">
             {{ $t('store.siderButton') }}
           </NButton>
@@ -92,4 +99,5 @@ watch(
     <div v-show="!collapsed" class="fixed inset-0 z-40 w-full h-full bg-black/40" @click="handleUpdateCollapsed" />
   </template>
   <PromptStore v-model:visible="show" />
+  <VerfyModal v-model:visible="showMoal" />
 </template>
