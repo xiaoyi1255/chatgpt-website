@@ -1,11 +1,11 @@
 module.exports = {
     apps: [
       {
-        name: 'ws',
-        port: '3000',
+        name: 'chatgpt-app',
+        port: '3003',
         instances: 1,
         exec_mode: 'cluster',
-        script: './service/src/index.js'
+        script: './build/index.mjs'
       }
     ]
   }

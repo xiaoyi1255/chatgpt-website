@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+/service/public
 node_modules
 .DS_Store
 dist
@@ -14,7 +15,6 @@ dist-ssr
 coverage
 *.local
 
-# .env
 
 /cypress/videos/
 /cypress/screenshots/
@@ -31,4 +31,4 @@ coverage
 *.sw?
 
 # Environment variables files
-/service/.env
+# /service/.env
