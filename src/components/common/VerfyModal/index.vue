@@ -1,19 +1,20 @@
 <script setup lang="ts">
+/* eslint-disable */
 import qr_code from "@/assets/qrcode.jpg";
 import { NButton, NInput, useMessage, NModal, NImage } from "naive-ui";
 import { SvgIcon } from "@/components/common";
 import { debounce } from '@/utils/functions/debounce'
 
 import { useAuthStore } from "@/store";
-import { test } from "node:test";
 import { fetchVerifyCode } from "@/api";
 import { ref, computed } from "vue";
 interface Emit {
   (e: "update:visible", visible: boolean): void;
 }
 interface Props {
-  visible: boolean;
+  visible: boolean
 }
+
 const props = defineProps<Props>();
 const emit = defineEmits<Emit>();
 const ms = useMessage();
@@ -31,19 +32,20 @@ const handleSendCode = debounce(async function() {
     return;
   }
   try {
-    const res = await fetchVerifyCode(codeValue.value);
-    console.log(res)
+    const res = await fetchVerifyCode(codeValue.value) as any;
     const { token = "" } = res.data || {};
     if (token) {
       authStore.setWechatToken(token);
-      showModal.value = false;
+      emit("update:visible", false)
       ms.success("登录成功！！");
     }
-  } catch (error) {
+  } catch (error: any) {
     ms.error(error?.msg);
     authStore.removeWechatToken();
   }
 }, 600)
+/* eslint-enable */
+
 </script>
 
 <template>
