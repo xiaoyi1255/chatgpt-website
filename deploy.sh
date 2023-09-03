@@ -18,5 +18,5 @@ echo "文件已移动到 service/public 目录"
 
 
 cd service
-pnpm run stop
+# pnpm run stop
 pnpm run deploy_release
