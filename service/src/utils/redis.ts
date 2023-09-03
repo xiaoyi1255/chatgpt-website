@@ -1,4 +1,4 @@
-const Redis = require('ioredis');
+import Redis from 'ioredis';
 const redisConfig = {
     host: '118.89.125.27', // Redis服务器主机地址
     port: 6379, // Redis 服务器端口
@@ -88,6 +88,5 @@ class RoomListCkient extends RedisClient {
 
 }
 
-
-module.exports = new RedisClient()
+export default  new RedisClient()
 

@@ -1,5 +1,5 @@
 import { isNotEmptyString } from '../utils/is'
-const redisCkient = require('../utils/redis');
+import redisCkient from '../utils/redis'
 
 const auth = async (req, res, next) => {
   const AUTH_SECRET_KEY = process.env.AUTH_SECRET_KEY

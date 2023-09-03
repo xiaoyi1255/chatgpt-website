@@ -1,8 +1,9 @@
-const { parseString } = require('xml2js');
-const express = require('express');
-const jsSHA = require('jssha');
+import express from 'express'
+import jsSHA from 'jssha'
 const router = express.Router();
-const redisCkient = require('../utils/redis');
+import redisCkient from '../utils/redis'
+import { parseString } from 'xml2js'
+
 
 router.get('/wechat', (req, res, next) => {
 	const token = 'xiaoyi1255';
@@ -63,7 +64,7 @@ router.post('/verifyCode', async function (req, res) {
 	const { code } = req.body;
 	const OpenID = await redisCkient.get(code);
 	console.log(OpenID, code);
-	if (!OpenID) {
+	if (OpenID) {
 		// const token = '使用OpenID进行jwt鉴权颁发Token';
 		res.status(200).json({
 			status: 'Success',
