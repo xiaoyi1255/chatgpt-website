@@ -4,7 +4,7 @@ const redisConfig = {
     port: 6379, // Redis 服务器端口
     password: 'xiaoyi', // 密码
 }
-if (process?.argv?.[2] === 'dev') {
+if (process.env.NODE_ENV !== 'production') {
     redisConfig.host='localhost'
 }
  class RedisClient {

@@ -2,6 +2,7 @@
 
 # 运行 pnpm build 命令来构建项目，将生成的文件存储在 dist 目录中
 pnpm build
+echo '前端项目构建完成'
 
 rm -rf service/public
 
@@ -12,11 +13,13 @@ mkdir -p service/public
 mv dist/* service/public/
 
 # 输出完成消息
-echo "文件已移动到 service/public 目录"
-
-
+echo "前端项目文件移动到 service/public 目录"
 
 
 cd service
-# pnpm run stop
-pnpm run deploy_release
+echo '开始勾搭node项目'
+
+npm  run build
+echo '构建完成 开始部署'
+
+npm run  deploy_dev
